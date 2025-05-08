@@ -8,7 +8,7 @@ const list = document.querySelector('.list')
 
 let active = 0;
 const total = items.length
-let time;
+let timer;
 
 
 function update(direction) {
@@ -32,12 +32,16 @@ function update(direction) {
         }
     }
 
-
     items[active].classList.add('active')
     dots[active].classList.add('active')
 
+    numberIndicator.textContent = String(active + 1).padStart(2,'0')
 }
 
+clearInterval(timer)
+timer = setInterval(() => {
+    update(1)
+}, 5000);
 
 prevButton.addEventListener('click', () => {
     update(-1)
